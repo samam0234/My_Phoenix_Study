@@ -1,0 +1,17 @@
+services:
+  board:
+    build: ./board
+    ports:
+      - "4000:4000"
+    environment:
+      PHX_SERVER: "true"
+      PORT: "4000"
+      DATABASE_PATH: /data/board.db
+      SECRET_KEY_BASE: "study-only-replace-with-mix-phx-gen-secret-before-any-real-deploy-0123456789abcdef"
+      CORS_ORIGIN: "http://localhost:5173"
+      AI_DRIVER: "mock"
+    volumes:
+      - board-data:/data
+
+volumes:
+  board-data:

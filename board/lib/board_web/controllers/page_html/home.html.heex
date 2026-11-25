@@ -1,0 +1,13 @@
+<Layouts.app flash={@flash} current_user={@current_user}>
+  <p class="text-sm font-semibold">Phoenix {Application.spec(:phoenix, :vsn)}</p>
+  <h1 class="text-3xl font-semibold">서버가 화면 상태를 들고 있는 게시판</h1>
+  <p>
+    이 저장소는 Phoenix만 따라갑니다. 첫 화면은 개발 서버가 띄운 HTML이고,
+    게시판은 LiveView, 목록 API는 <code>/api/posts</code> 입니다.
+  </p>
+  <div class="flex gap-2">
+    <.link href={~p"/hello"} class="btn btn-primary">문법 예제</.link>
+    <.link href={~p"/posts"} class="btn">게시판</.link>
+    <.link href={~p"/api-docs"} class="btn">API 문서</.link>
+  </div>
+</Layouts.app>

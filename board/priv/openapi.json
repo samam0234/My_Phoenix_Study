@@ -1,0 +1,35 @@
+{
+  "openapi": "3.0.3",
+  "info": {"title": "Board API", "version": "1.0.0"},
+  "paths": {
+    "/health": {
+      "get": {"responses": {"200": {"description": "status ok"}}}
+    },
+    "/api/auth/signup": {"post": {"responses": {"201": {"description": "created"}, "409": {"description": "email taken"}}}},
+    "/api/auth/login": {"post": {"responses": {"200": {"description": "token"}, "401": {"description": "invalid credentials"}}}},
+    "/api/auth/logout": {"post": {"responses": {"204": {"description": "no content"}}}},
+    "/api/auth/me": {"get": {"responses": {"200": {"description": "current user"}, "401": {"description": "unauthorized"}}}},
+    "/api/posts": {
+      "get": {"parameters": [
+        {"name": "q", "in": "query", "schema": {"type": "string"}},
+        {"name": "page", "in": "query", "schema": {"type": "integer", "minimum": 1}},
+        {"name": "limit", "in": "query", "schema": {"type": "integer", "minimum": 1, "maximum": 50}},
+        {"name": "sort", "in": "query", "schema": {"type": "string"}}
+      ], "responses": {"200": {"description": "data + meta"}}},
+      "post": {"responses": {"201": {"description": "created"}, "400": {"description": "validation"}, "401": {"description": "unauthorized"}}}
+    },
+    "/api/posts/{id}": {
+      "get": {"responses": {"200": {"description": "one post"}, "404": {"description": "missing"}}},
+      "patch": {"responses": {"200": {"description": "updated"}, "403": {"description": "forbidden"}}},
+      "delete": {"responses": {"204": {"description": "deleted"}}}
+    },
+    "/api/posts/{id}/comments": {
+      "get": {"responses": {"200": {"description": "comments"}}},
+      "post": {"responses": {"201": {"description": "created"}}}
+    },
+    "/api/comments/{id}": {"delete": {"responses": {"204": {"description": "deleted"}}}},
+    "/api/documents": {"get": {"responses": {"200": {"description": "my documents"}}}, "post": {"responses": {"201": {"description": "uploaded"}}}},
+    "/api/documents/{id}/questions": {"post": {"responses": {"200": {"description": "answer"}}}},
+    "/api/ai/summarize/stream": {"post": {"responses": {"200": {"description": "text/event-stream"}}}}
+  }
+}
